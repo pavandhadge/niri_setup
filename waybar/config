@@ -1,0 +1,95 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 5,
+
+    "modules-left": [
+        "niri/workspaces",
+        "niri/window"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "custom/notification",
+        "tray",
+        "pulseaudio",
+        "battery"
+    ],
+
+    // Workspaces (Niri-specific module)
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        },
+        "all-outputs": true,
+        "disable-scroll": true
+    },
+
+    // Focused window title
+    "niri/window": {
+        "format": "{title}",
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    // Clock
+    "clock": {
+        "format": "{:%a %d %b | %I:%M %p}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+    },
+
+    // Notification Center (SwayNC)
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    // System tray
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    // Audio volume
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "format-icons": ["", "", ""],
+        "on-click": "pavucontrol"
+    },
+
+    // Battery
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    }
+}

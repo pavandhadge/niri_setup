@@ -1,0 +1,201 @@
+/* --- GLOBAL --- */
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+/* --- CONTROL CENTER (Background) --- */
+.control-center {
+    background: rgba(17, 17, 27, 0.95); /* Deep Crust */
+    border: 2px solid #cba6f7; /* Mauve Border */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.6);
+    margin: 10px;
+    padding: 12px;
+}
+
+/* --- WIDGET TITLES --- */
+.widget-title {
+    color: #cdd6f4;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.widget-title > button {
+    background: #313244;
+    color: #cdd6f4;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.widget-title > button:hover {
+    background: #f38ba8;
+    color: #11111b;
+}
+
+/* --- NOTIFICATIONS (The Card) --- */
+.notification-row {
+    outline: none;
+    margin: 10px 5px;
+}
+
+.notification {
+    background: #181825; /* Mantle */
+    border-radius: 12px;
+    /* THIS IS THE FIX: Huge padding keeps button away from corner */
+    padding: 20px;
+    border: 1px solid #313244;
+    margin-bottom: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.notification.critical {
+    border: 2px solid #f38ba8;
+    background: #2d1b24;
+}
+
+/* --- TEXT CONTENT --- */
+.notification-content {
+    background: transparent;
+    padding: 0px;
+    margin-right: 20px; /* Force gap between Text and Button */
+}
+
+.summary {
+    color: #cba6f7;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.body {
+    color: #a6adc8;
+    margin-top: 5px;
+}
+
+.time {
+    color: #585b70;
+    font-size: 11px;
+    margin-right: 15px;
+}
+
+/* --- CLOSE BUTTON (Redesigned) --- */
+/* --- CLOSE BUTTON (Fixed for GTK) --- */
+.close-button {
+    all: unset; /* Strip defaults */
+
+    background: #11111b; /* Darkest Black Circle */
+    color: #f38ba8; /* Red Icon */
+
+    border-radius: 100%; /* Perfect Circle */
+    min-width: 30px; /* Width */
+    min-height: 30px; /* Height */
+
+    /* REMOVED 'display: flex' (Causes Error) */
+
+    /* Center the icon using GTK specific behavior */
+    padding: 0px;
+    margin-left: 10px;
+
+    /* BORDER to make it visible */
+    border: 1px solid #cba6f7;
+
+    /* GTK Specific: Ensure background paints correctly */
+    background-clip: padding-box;
+}
+
+.close-button:hover {
+    background: #f38ba8; /* Red Background */
+    color: #11111b; /* Dark Icon */
+    border: 1px solid #f38ba8;
+}
+
+/* --- INLINE REPLY --- */
+.inline-reply-entry {
+    background: #11111b;
+    color: #cdd6f4;
+    border: 1px solid #cba6f7;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.inline-reply-button {
+    background: #313244;
+    color: #cdd6f4;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 5px;
+}
+
+.inline-reply-button:hover {
+    background: #cba6f7;
+    color: #11111b;
+}
+
+/* --- FLOATING POPUPS --- */
+.floating-notifications {
+    background: transparent;
+}
+
+.floating-notifications .notification {
+    background: #11111b;
+    border: 2px solid #cba6f7;
+    border-radius: 12px;
+    margin: 15px;
+    padding: 20px; /* Consistent padding */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+/* --- GROUPING / STACKING FIXES --- */
+
+/* The container for the stack - Make it invisible! */
+.notification-group {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* The header of a stack (e.g. "Discord (3)") */
+.notification-group-header {
+    background: #313244; /* Surface0 */
+    color: #cdd6f4; /* Text */
+    border: 1px solid #cba6f7; /* Mauve border */
+    border-radius: 8px;
+    margin: 5px 10px; /* Align with cards */
+    padding: 8px 12px;
+    font-weight: bold;
+}
+
+.notification-group-header:hover {
+    background: #cba6f7;
+    color: #11111b;
+}
+
+/* The Close Button inside the Group Header */
+.notification-group-header > button {
+    background: transparent;
+    color: #cdd6f4;
+    border: none;
+    box-shadow: none;
+    padding: 0px;
+}
+
+/* The individual cards INSIDE the stack */
+.notification-group .notification-row .notification {
+    background: #1e1e2e; /* Base (Slightly lighter than Mantle) */
+    border: 1px solid #45475a; /* Distinct border for stack items */
+    margin: 5px 0px; /* FORCE GAP between stacked items */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Indent the stack slightly so it looks "nested" */
+.notification-group .notification-row {
+    margin-left: 15px;
+    margin-right: 5px;
+}

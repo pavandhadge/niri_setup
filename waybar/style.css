@@ -1,0 +1,132 @@
+/* --- RESET --- */
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 0;
+}
+
+/* --- THE BAR --- */
+window#waybar {
+    background-color: #1e1e2e; /* Solid Dark Background */
+    color: #cdd6f4; /* White Text */
+    border-top: 2px solid #cba6f7; /* Subtle Top Border */
+}
+
+/* --- NIRI WORKSPACES --- */
+/* Waybar converts "niri/workspaces" in JSON to ID "#niri-workspaces" in CSS */
+#niri-workspaces {
+    background-color: transparent;
+    margin: 0 5px;
+}
+
+#niri-workspaces button {
+    padding: 0 5px;
+    color: #6c7086; /* Inactive color */
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    background: transparent;
+}
+
+#niri-workspaces button.active {
+    color: #cba6f7; /* Active Mauve */
+    border-bottom: 2px solid #cba6f7;
+    background: transparent;
+}
+
+#niri-workspaces button:hover {
+    color: #f38ba8; /* Red hover */
+    background: transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+/* --- NIRI WINDOW TITLE --- */
+#niri-window {
+    color: #a6adc8;
+    font-size: 13px; /* Slightly bigger for readability */
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+/* --- CLOCK --- */
+#clock {
+    color: #cdd6f4;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* --- RIGHT MODULES GROUP --- */
+#pulseaudio,
+#battery,
+#custom-notification,
+#custom-profile,
+#tray {
+    padding: 0 12px;
+    background: transparent;
+    margin: 0;
+}
+
+/* --- MODULE SPECIFIC COLORS --- */
+
+/* 1. Audio */
+#pulseaudio {
+    color: #fab387; /* Peach */
+}
+#pulseaudio.muted {
+    color: #6c7086; /* Grey when muted */
+}
+
+/* 2. Battery */
+#battery {
+    color: #a6e3a1; /* Green */
+}
+#battery.charging {
+    color: #f9e2af; /* Yellow */
+}
+#battery.warning {
+    color: #fab387; /* Peach */
+}
+#battery.critical {
+    color: #f38ba8; /* Red */
+    animation: blink 0.5s infinite alternate;
+}
+
+/* 3. Notification Center */
+#custom-notification {
+    color: #cba6f7; /* Mauve */
+    font-size: 16px;
+    padding-right: 15px; /* Extra space for the red dot */
+}
+
+/* 4. Profile Switcher (New) */
+#custom-profile {
+    color: #89b4fa; /* Blue */
+    font-weight: bold;
+}
+#custom-profile:hover {
+    color: #b4befe; /* Lighter blue on hover */
+}
+
+/* 5. Tray */
+#tray {
+    padding-right: 8px;
+}
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes blink {
+    to {
+        background-color: #f38ba8;
+        color: #1e1e2e;
+    }
+}
+
+/* ~/.config/swaync/style.css */
+/* ~/.config/swaync/style.css */

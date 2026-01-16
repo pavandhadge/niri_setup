@@ -1,0 +1,79 @@
+Here is the **complete, consolidated list** of every application and tool needed for your Niri setup to work seamlessly on Fedora.
+
+I have matched the "Command Name" (what you use in the config) with the actual "Fedora Package Name" so you can install them easily.
+
+### 📦 The Master Install Command
+
+Run this single command to install everything at once.
+
+*Note: I swapped `satty` for `swappy` (easier on Fedora) and `swaylock-effects` for standard `swaylock` to ensure this command works out of the box.*
+
+```bash
+sudo dnf install niri waybar swaync fuzzel alacritty \
+swaybg swayidle swaylock grim slurp wl-clipboard \
+wf-recorder cliphist libnotify wireplumber \
+playerctl brightnessctl jq swappy \
+network-manager-applet blueman
+
+```
+
+---
+
+### 📋 Detailed App Breakdown
+
+#### 1. Core Desktop & Window Management
+
+These are the essentials that make the graphical environment work.
+
+* **`niri`**: The Window Manager (Compositor).
+* **`waybar`**: The status bar at the bottom.
+* **`swaync`**: The Notification Center (slide-out panel).
+* **`fuzzel`**: The App Launcher (Menu).
+* **`alacritty`**: The Terminal Emulator.
+
+#### 2. Visuals & System Daemons
+
+Background processes that handle the look and feel.
+
+* **`swaybg`**: Sets the wallpaper.
+* **`swayidle`**: Detects inactivity (to turn off screens).
+* **`swaylock`**: Locks the screen securely.
+* *(Note: Your config used `swaylock-effects` for blur/fade. This is not in standard Fedora repos. Use standard `swaylock` or install the effects version from a COPR repo).*
+
+
+* **`cliphist`**: Records clipboard history.
+* **`wl-clipboard`**: Required for copy/paste to work in Wayland.
+
+#### 3. Screenshots & Recording
+
+Tools for capturing content.
+
+* **`grim`**: Takes the screenshot.
+* **`slurp`**: Selects the region on the screen.
+* **`swappy`**: Edits the screenshot (arrows, text, crop).
+* *(Alternative: `satty` - requires manual install via Cargo/Rust).*
+
+
+* **`wf-recorder`**: Records screen video to MP4.
+
+#### 4. Connectivity (Tray Icons)
+
+The applets required for the icons in the bottom-right of your bar.
+
+* **`nm-applet`** (Package: `network-manager-applet`): The WiFi/Network icon and menu.
+* **`blueman-applet`** (Package: `blueman`): The Bluetooth icon and manager.
+
+#### 5. Audio & Utilities
+
+Helpers for scripts and hardware control.
+
+* **`libnotify`** (Command: `notify-send`): Sends the popup bubbles for alerts.
+* **`wireplumber`** (Command: `wpctl`): Controls volume and audio devices.
+* **`playerctl`**: Controls media (Play/Pause/Next) for Spotify/YouTube.
+* **`brightnessctl`**: Controls laptop screen brightness.
+* **`jq`**: A tool for processing JSON data (needed for your custom Waybar scripts).
+* **`JetBrainsMono Nerd Font`**: The font required to see the icons (usually installed via `dnf install jetbrains-mono-fonts-all` or manually).
+
+### Next Step
+
+Would you like me to write a **startup script** that checks if all these are running and relaunches them if they crash, to make your system bulletproof?

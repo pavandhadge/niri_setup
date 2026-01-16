@@ -1,0 +1,59 @@
+# Core features
+screenshots
+clock
+indicator
+indicator-radius=120          # Slightly larger ring for visibility
+indicator-thickness=8         # Thicker ring for modern look
+indicator-x-offset=0
+indicator-y-offset=80         # Move ring down a bit so it's centered nicely with clock
+
+# Input box / password field appearance
+input-box-radius=15           # Rounded corners for the password box
+input-box-thickness=3         # Border thickness around input area
+input-box-color=1e1e2ecc      # Semi-transparent dark background for box
+input-box-border-color=89b4fa # Accent border (blue-ish)
+input-box-border-hover-color=89b4faff  # Brighter when focused/typing
+
+# Effects
+fade-in=0.3
+effect-blur=7x5
+# effect-vignette=0.4:0.6     # Subtle dark edges (uncomment if you want more contrast)
+# effect-scale=0.9            # Slight downscale for performance (optional)
+
+# Grace & behavior
+grace=5
+show-failed-attempts
+ignore-empty-password
+hide-input                    # Show dots ••• instead of actual characters (standard behavior)
+password-character=•          # Use bullet/dot for typed characters
+
+# Colors (dark/mocha theme - visible & readable)
+ring-color=45475a             # Inactive ring (gray)
+ring-ver-color=89b4fa         # Verifying (blue)
+ring-wrong-color=f38ba8       # Wrong password (red)
+ring-clear-color=45475a       # Cleared state
+key-hl-color=89b4fa           # Keypress highlight (blue)
+bs-hl-color=f38ba8            # Backspace highlight (red)
+
+inside-color=00000000         # Fully transparent inside ring
+inside-clear-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=00000000
+
+line-color=00000000           # No visible line
+line-ver-color=00000000
+line-wrong-color=00000000
+line-clear-color=00000000
+
+text-color=cdd6f4             # Clock & text color (light)
+text-clear-color=f2d5cf       # Clear state text
+text-ver-color=cdd6f4         # Verifying text
+text-wrong-color=f38ba8       # Wrong password text
+
+# Optional: Bigger clock & position tweaks
+clock-font-size=80
+date-font-size=32
+greeting-font-size=24
+greeting-text="Welcome back, pavan"
+greeting-pos-x=0
+greeting-pos-y=120

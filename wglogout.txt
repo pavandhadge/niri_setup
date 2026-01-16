@@ -1,0 +1,186 @@
+The tool you are likely looking for is **`wlogout`**.
+
+It is a Wayland-based logout menu that overlays your screen with buttons for Shutdown, Reboot, Lock, Suspend, and Hibernate. It is lightweight, graphical, and looks great with Niri.
+
+### 1. Install wlogout
+
+On Fedora, you can install it easily:
+
+```bash
+sudo dnf install wlogout
+
+```
+
+---
+
+### 2. Configuration (The Layout)
+
+`wlogout` needs two files: one for the buttons (`layout`) and one for the look (`style.css`).
+
+Create the folder first:
+
+```bash
+mkdir -p ~/.config/wlogout
+
+```
+
+#### A. The Layout File (Defines Buttons)
+
+Create/Edit this file: `~/.config/wlogout/layout`
+
+This configuration includes **Lock, Hibernate, Suspend, Reboot, and Shutdown**.
+
+```json
+[
+    {
+        "label": "lock",
+        "action": "swaylock",
+        "text": "Lock",
+        "keybind": "l"
+    },
+    {
+        "label": "hibernate",
+        "action": "systemctl hibernate",
+        "text": "Hibernate",
+        "keybind": "h"
+    },
+    {
+        "label": "logout",
+        "action": "niri msg action quit",
+        "text": "Logout",
+        "keybind": "e"
+    },
+    {
+        "label": "shutdown",
+        "action": "systemctl poweroff",
+        "text": "Shutdown",
+        "keybind": "s"
+    },
+    {
+        "label": "suspend",
+        "action": "systemctl suspend",
+        "text": "Suspend",
+        "keybind": "u"
+    },
+    {
+        "label": "reboot",
+        "action": "systemctl reboot",
+        "text": "Reboot",
+        "keybind": "r"
+    }
+]
+
+```
+
+*Note: For **Hibernate** to actually work, your Fedora system must have a Swap partition/file large enough to hold your RAM, and it must be enabled in your kernel parameters. If you haven't set that up, the button will do nothing.*
+
+---
+
+#### B. The Style File (The Look)
+
+Create/Edit this file: `~/.config/wlogout/style.css`
+
+This CSS makes it a transparent dark overlay with big rounded buttons, matching your Waybar theme.
+
+```css
+* {
+    background-image: none;
+    box-shadow: none;
+}
+
+window {
+    background-color: rgba(30, 30, 46, 0.85); /* Dark transparent background */
+}
+
+button {
+    border-radius: 20px;
+    border-color: #cba6f7; /* Mauve border */
+    text-decoration-color: #cdd6f4;
+    color: #cdd6f4;
+    background-color: #313244;
+    border-style: solid;
+    border-width: 2px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    margin: 10px;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #45475a;
+    outline-style: none;
+}
+
+button:focus {
+    background-color: #cba6f7;
+    color: #1e1e2e;
+}
+
+/* Icons - These use standard wlogout icons installed in /usr/share/wlogout/icons */
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"));
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+}
+
+```
+
+---
+
+### 3. Add to Niri Config
+
+Now, bind a key (usually `Mod+X` or `Power Button`) to open this menu.
+
+Add this to your `~/.config/niri/config.kdl`:
+
+```kdl
+binds {
+    // Open Power Menu
+    Mod+Shift+E { spawn "wlogout"; }
+
+    // Optional: Bind it to the actual Power Key on your laptop/PC
+    XF86PowerOff { spawn "wlogout"; }
+}
+
+```
+
+### Alternative: Ultra-Minimalist (Using Fuzzel)
+
+If `wlogout` feels too heavy and you just want a text search list, you can use **Fuzzel** (which you already have).
+
+**No install needed.** Just create a script `~/power-menu.sh`:
+
+```bash
+#!/bin/bash
+SELECTION="$(printf "1. Lock\n2. Suspend\n3. Reboot\n4. Shutdown\n5. Hibernate" | fuzzel --dmenu -l 5 -p "Power Menu: ")"
+
+case $SELECTION in
+    *"Lock") swaylock ;;
+    *"Suspend") systemctl suspend ;;
+    *"Reboot") systemctl reboot ;;
+    *"Shutdown") systemctl poweroff ;;
+    *"Hibernate") systemctl hibernate ;;
+esac
+
+```
+
+(Don't forget to `chmod +x ~/power-menu.sh` and bind it in Niri).
